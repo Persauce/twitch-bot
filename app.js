@@ -1,4 +1,5 @@
 const req= require('tmi.js');
+require('dotenv').config;
 
 //Connects to the tmi client and selects which channel u listen to
 let client = new req.Client({
@@ -6,8 +7,12 @@ let client = new req.Client({
         reconnect:true
     },
     channels:[
-        'Lone_Shark'
-    ]
+        'slamurcheek'
+    ],
+    identity:{
+        username:process.env.USER,
+        pass:process.env.OAUTH
+    }
 
     });
 client.connect();
@@ -20,4 +25,16 @@ client.on('message',async(chan,text,messs)=>{
         user:text.username,
         messs
     });
+    //this checks if the person who sent the message is NOT the bot itself
+    let not = text.username !== process.env.USER;
+    //sends a message of who and what they sent
+    try{
+        if (not){
+        client.say(chan, `responding to${text.username} mess : ${messs}`);
+        }
+    }
+    catch{
+    
+    }
+
 });
