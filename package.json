@@ -1,0 +1,23 @@
+{
+  "name": "hack_njit",
+  "version": "1.0.0",
+  "description": "twitch chatbot",
+  "main": "app.js",
+  "scripts": {
+    "start": "app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Persauce/twitch-bot.git"
+  },
+  "keywords": [
+    "twitch",
+    "bot"
+  ],
+  "author": "Dave Persaud",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Persauce/twitch-bot/issues"
+  },
+  "homepage": "https://github.com/Persauce/twitch-bot#readme"
+}
