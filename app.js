@@ -3,6 +3,7 @@ require('dotenv').config;
 
 //Connects to the tmi client and selects which channel u listen to
 let client = new req.Client({
+    options: { debug: true, messagesLogLevel: "info" },
     connection:{
         reconnect:true
     },
@@ -11,12 +12,12 @@ let client = new req.Client({
     ],
     identity:{
         username:process.env.USER,
-        pass:process.env.OAUTH
+        password:`oauth:${process.env.OAUTH}`
     }
 
     });
-client.connect();
-
+client.connect().catch(console.error);
+console.log("connected");
 //making a new listener
 
 client.on('message',async(chan,text,messs)=>{
@@ -30,7 +31,7 @@ client.on('message',async(chan,text,messs)=>{
     //sends a message of who and what they sent
     try{
         if (not){
-        client.say(chan, `responding to${text.username} mess : ${messs}`);
+        client.say(chan, `responding to${text.username} mess : ${messs}`).catch();
         }
     }
     catch{
@@ -38,3 +39,4 @@ client.on('message',async(chan,text,messs)=>{
     }
 
 });
+console.log(process.env.USER);
